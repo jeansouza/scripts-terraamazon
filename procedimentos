@@ -1,0 +1,17 @@
+gdal_merge.py -o R2AWA30JAN2018315077STLC00GODP_RPC.tif R2AWA30JAN2018315077STLC00GODP_BAND3_RPC.tif R2AWA30JAN2018315077STLC00GODP_BAND4_RPC.tif R2AWA30JAN2018315077STLC00GODP_BAND5_RPC.tif
+
+# Realiza a composição das bandas em uma única imagem RGB
+gdal_merge.py -separate -o COMPOSED_RGB.tif ${red_band_tiff_8bits} ${green_band_tiff_8bits} ${blue_band_tiff_8bits}
+
+gdal_merge.py -separate -co PHOTOMETRIC=RGB -o R2AWA30JAN2018315077STLC00GODP_RPC.tif R2AWA30JAN2018315077STLC00GODP_BAND3_RPC.tif R2AWA30JAN2018315077STLC00GODP_BAND4_RPC.tif R2AWA30JAN2018315077STLC00GODP_BAND5_RPC.tif
+
+# Comando para conversão radiometrica de 16 bits para 8 bits
+gdal_translate -of GTiff -ot Byte -scale -co TFW=YES <ARQUIVO_ENTRADA> <ARQUIVO_SAIDA>
+
+C4WFI_05032018_161111 (C-CBERS, 4, WFI-SENSOR, DATA-05/03/2018, 161-Orbita, 111-Ponto) 
+
+R2AW_20022018_324087A (R-Resourcesat, 2, AW-Sensor AWIFS, data- 20/02/2018, Orbita-324, Ponto-087, A-quadrante)
+
+-------------------
+
+Para utilizar o docker, é necessário instalar o docker e o docker compose.
